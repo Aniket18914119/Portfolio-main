@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniket Gautam - Graphic Designer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=modern%20minimalist%20design%20studio%20with%203D%20design%20tools%20floating%20in%20space%2C%20dark%20purple%20and%20blue%20gradient%20background%2C%20high-end%203D%20rendering%2C%20professional%20lighting%2C%20cinematic%20atmosphere%2C%20ultra-detailed%2C%20photorealistic&width=1920&height=1080&seq=hero123&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            transform: translateX(-20px);
+        }
+        
+        .timeline-item:nth-child(even) {
+            transform: translateX(20px);
+        }
+        
+        .timeline-item:hover {
+            transform: scale(1.05) translateY(-10px);
+            z-index: 10;
+        }
+        
+        .project-card {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) rotateY(10deg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .custom-cursor {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(99, 102, 241, 0.5);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        
+        .contact-form {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .contact-form:hover {
+            transform: rotateX(2deg) rotateY(2deg);
+        }
+        
+        .theme-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #f3f4f6;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        
+        .theme-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: #6366f1;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-switch.dark::after {
+            transform: translateX(30px);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #6366f1;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .social-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }    
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+        
+        .wave-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=abstract%203D%20wave%20pattern%2C%20soft%20gradient%20colors%2C%20blue%20and%20purple%2C%20minimalist%20design%2C%20smooth%20curves%2C%20digital%20art%2C%20high%20resolution&width=1920&height=400&seq=wave123&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-['Pacifico'] text-primary">Aniket Gautam</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-gray-800 hover:text-primary transition-all">Home</a>
+                <a href="#experience" class="nav-link text-gray-800 hover:text-primary transition-all">Experience</a>
+                <a href="#projects" class="nav-link text-gray-800 hover:text-primary transition-all">Projects</a>
+                <a href="#contact" class="nav-link text-gray-800 hover:text-primary transition-all">Contact</a>
+            </div>
+            <div class="md:hidden w-10 h-10 flex items-center justify-center" id="mobileMenuButton">
+                <i class="ri-menu-line ri-lg"></i>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full absolute top-full left-0 shadow-md" id="mobileMenu">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-gray-800 hover:text-primary py-2">Home</a>
+                <a href="#experience" class="text-gray-800 hover:text-primary py-2">Experience</a>
+                <a href="#projects" class="text-gray-800 hover:text-primary py-2">Projects</a>
+                <a href="#contact" class="text-gray-800 hover:text-primary py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg relative min-h-screen flex items-center justify-center pt-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
+        
+        <div class="container mx-auto px-6 z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-white mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                        <span class="block transform transition-all duration-700">Hello, I'm</span>
+                        <span class="block text-primary transform transition-all duration-700 delay-300">Aniket Gautam</span>
+                    </h1>
+                    <h2 class="text-xl md:text-3xl mb-6 transform transition-all duration-700 delay-500">Creative Graphic Designer & Video Editor</h2>
+                    <p class="text-lg mb-8 max-w-lg transform transition-all duration-700 delay-700">
+                        Transforming ideas into visual experiences with a focus on innovative design and creative solutions.  
+                        Bringing stories to life through seamless and cinematic editing.
+                    </p>
+                    <div class="flex space-x-4 transform transition-all duration-700 delay-900">
+                        <a href="#projects" class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap">View Projects</a>
+                        <a href="#contact" class="border-2 border-white text-white px-8 py-3 !rounded-button hover:bg-white hover:text-gray-900 transition-all whitespace-nowrap">Contact Me</a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center">
+                    <div id="hero3DContainer" class="w-full h-[400px] md:h-[500px] float-animation"></div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <div class="w-8 h-12 border-2 border-white !rounded-full flex justify-center">
+                <div class="w-2 h-2 bg-white !rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">My Experience</h2>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-20">
+                    <!-- Item 1 -->
+                    <div class="timeline-item relative flex flex-col md:flex-row items-center transition-all duration-500">
+                        <div class="md:w-1/2 mb-6 md:mb-0 md:pr-12 md:text-right">
+                            <h3 class="text-2xl font-bold text-gray-800">Graphic Designer</h3>
+                            <p class="text-primary font-medium">Optasia Foundation, 2022 - Feb 2025</p>
+                            <p class="mt-3 text-gray-600">Led a team of 3 creatives in developing impactful visual content for NGO campaigns. Enhanced engagement by 35% through innovative storytelling and efficient design processes.</p>
+                            <div class="mt-4 flex flex-wrap justify-end gap-2">
+                                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Brand Identity</span>
+                                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Team Leadership</span>
+                                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Campaign Oversight</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white !rounded-full border-4 border-primary items-center justify-center z-10">
+                            <i class="ri-briefcase-4-line ri-lg text-primary"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="bg-white p-6 !rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl">
+                                <div class="w-full h-48 bg-gray-200 !rounded-lg mb-4 overflow-hidden">
+                                    <img src="image/1.jpg" alt="Artistry Studios" class="w-full h-full object-cover">
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 h-2 !rounded-full">
+                                            <div class="bg-primary h-2 !rounded-full" style="width: 95%"></div>
+                                        </div>
+                                        <span class="ml-3 text-sm font-medium text-gray-700 whitespace-nowrap">Adobe Suite</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 h-2 !rounded-full">
+                                            <div class="bg-primary h-2 !rounded-full" style="width: 90%"></div>
+                                        </div>
+                                        <span class="ml-3 text-sm font-medium text-gray-700 whitespace-nowrap">3D Design</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 h-2 !rounded-full">
+                                            <div class="bg-primary h-2 !rounded-full" style="width: 85%"></div>
+                                        </div>
+                                        <span class="ml-3 text-sm font-medium text-gray-700 whitespace-nowrap">UI/UX</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item relative flex flex-col md:flex-row-reverse items-center transition-all duration-500">
+    
+    <!-- Left Side Text -->
+    <div class="md:w-1/2 mb-6 md:mb-0 md:pl-12">
+        <h3 class="text-2xl font-bold text-gray-800">UI/UX Designer</h3>
+        <p class="text-primary font-medium">Xhify Pvt.Ltd., 2023 - July 2024</p>
+        <p class="mt-3 text-gray-600">
+            Redesigned the flagship product's UI/UX, leading to a 40% surge in user engagement and a 25% drop in support tickets. Collaborated cross-functionally to ensure a smooth, intuitive user experience from concept to execution.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">UI/UX Design</span>
+            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Prototyping</span>
+            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">User Research</span>
+        </div>
+    </div>
+
+    <!-- Right Side Image Card (Moved inside main flex) -->
+    <div class="md:w-1/2 md:pr-12 md:text-right">
+        <div class="bg-white p-6 !rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl">
+            <div class="w-full h-48 bg-gray-200 !rounded-lg mb-4 overflow-hidden">
+                <img src="image/3.jpg" alt="TechVision" class="w-full h-full object-cover">
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center justify-end">
+                    <span class="mr-3 text-sm font-medium text-gray-700 whitespace-nowrap">Figma</span>
+                    <div class="w-full bg-gray-200 h-2 !rounded-full">
+                        <div class="bg-primary h-2 !rounded-full" style="width: 98%"></div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end">
+                    <span class="mr-3 text-sm font-medium text-gray-700 whitespace-nowrap">Sketch</span>
+                    <div class="w-full bg-gray-200 h-2 !rounded-full">
+                        <div class="bg-primary h-2 !rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end">
+                    <span class="mr-3 text-sm font-medium text-gray-700 whitespace-nowrap">Prototyping</span>
+                    <div class="w-full bg-gray-200 h-2 !rounded-full">
+                        <div class="bg-primary h-2 !rounded-full" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Center Timeline Icon -->
+    <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white !rounded-full border-4 border-primary items-center justify-center z-10">
+        <i class="ri-layout-4-line ri-lg text-primary"></i>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Project Showcase -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-6">Featured Projects</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">Explore my latest work across various design disciplines, from branding and UI/UX to 3D visualization and print design.</p>
+            
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn bg-primary text-white px-6 py-2 !rounded-full whitespace-nowrap" data-filter="all">All Projects</button>
+                <button class="filter-btn bg-gray-200 text-gray-800 px-6 py-2 !rounded-full hover:bg-gray-300 transition-all whitespace-nowrap" data-filter="branding">Branding</button>
+                <button class="filter-btn bg-gray-200 text-gray-800 px-6 py-2 !rounded-full hover:bg-gray-300 transition-all whitespace-nowrap" data-filter="ui-ux">UI/UX Design</button>
+                <button class="filter-btn bg-gray-200 text-gray-800 px-6 py-2 !rounded-full hover:bg-gray-300 transition-all whitespace-nowrap" data-filter="3d">Video Editing</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="branding">
+                    <div class="relative">
+                        <img src="image/OPTASIA_LOGO-removebg-preview.png" alt="Aroma Luxury Coffee Branding" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <div class="text-center text-white p-6">
+                                <h3 class="text-xl font-bold mb-2">Optasia Foundation</h3>
+                                <p class="mb-4">Developed a complete brand identity for a purpose-driven NGO, reflecting its mission, values, and impact through cohesive visual storytelling.</p>
+                                <button class="view-project-btn bg-white text-primary px-6 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap" data-project="project1">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Optasia Foundation</h3>
+                        <p class="text-gray-600 mb-4">Desiging, Branding, Packaging,</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Branding</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Packaging</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Luxury</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="ui-ux">
+                    <div class="relative">
+                        <img src="image/Exhime Web.png" alt="FitTrack Mobile App UI/UX" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <div class="text-center text-white p-6">
+                                <h3 class="text-xl font-bold mb-2"></h3>
+                                <p class="mb-4">UI/UX design for Exhime</p>
+                                <button class="view-project-btn bg-white text-primary px-6 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap" data-project="project2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Exhime Web-design</h3>
+                        <p class="text-gray-600 mb-4">UI/UX, Mobile Design, Prototyping</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">UI/UX</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Mobile</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Dark Mode</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="3d">
+                    <div class="relative group">
+                        <video 
+                            src="video/01.mp4" 
+                            class="w-full h-64 object-cover rounded-lg" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline>
+                        </video>
+
+                        <div class="project-overlay absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="text-center text-white p-6">
+                                <h3 class="text-xl font-bold mb-2">Video Editing</h3>
+                                <p class="mb-4">Where storytelling meets precision editing</p>
+                                <button class="view-project-btn bg-white text-primary px-6 py-2 rounded hover:bg-opacity-90 transition-all whitespace-nowrap" data-project="project3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Video Editing</h3>
+                        <p class="text-gray-600 mb-4">Premiere Pro, CapCut, After Effect, DaVinci Resolve</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">3D Animation</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Cinematic</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 !rounded-full text-sm">Transitions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-6">Our Work</h2>
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn bg-primary text-white px-6 py-2 !rounded-full transition-all whitespace-nowrap" data-filter="all">All</button>
+                <button class="filter-btn bg-gray-200 text-gray-800 px-6 py-2 !rounded-full hover:bg-gray-300 transition-all whitespace-nowrap" data-filter="image">Images</button>
+                <button class="filter-btn bg-gray-200 text-gray-800 px-6 py-2 !rounded-full hover:bg-gray-300 transition-all whitespace-nowrap" data-filter="video">Videos</button>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/00.png" target="_blank">
+                            <img src="image/00.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/03.png" target="_blank">
+                            <img src="image/03.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/05.png" target="_blank">
+                            <img src="image/05.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/07.png" target="_blank">
+                            <img src="image/07.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/e02.webp" target="_blank">
+                            <img src="image/e02.webp" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/e05.webp" target="_blank">
+                            <img src="image/e05.webp" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/e10.webp" target="_blank">
+                            <img src="image/e10.webp" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                <div class="project-card !rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/e06.webp" target="_blank">
+                            <img src="image/e06.webp" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div> 
+                    <input type="checkbox" id="show-more" class="hidden peer" />
+
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                    <a href="image/100.png" target="_blank">
+                            <img src="image/100.png" class="w-full h-64 object-cover cursor-pointer">
+                    </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/99.png" target="_blank">
+                            <img src="image/99.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/06.png" target="_blank">
+                            <img src="image/06.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/20.jpg" target="_blank">
+                            <img src="image/20.jpg" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/21.png" target="_blank">
+                            <img src="image/21.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/22.png" target="_blank">
+                            <img src="image/22.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/23.png" target="_blank">
+                            <img src="image/23.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/24.png" target="_blank">
+                            <img src="image/24.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/25.png" target="_blank">
+                            <img src="image/25.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/26.png" target="_blank">
+                            <img src="image/26.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/08.png" target="_blank">
+                            <img src="image/08.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg" data-category="image">
+                        <a href="image/04.png" target="_blank">
+                            <img src="image/04.png" class="w-full h-64 object-cover cursor-pointer">
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/10.mp4" target="_blank">
+                            <video src="Video/10.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/3.mp4" target="_blank">
+                            <video src="Video/3.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/6.mp4" target="_blank">
+                            <video src="Video/6.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/4.mp4" target="_blank">
+                            <video src="Video/4.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/8.mp4" target="_blank">
+                            <video src="Video/8.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/9.mp4" target="_blank">
+                            <video src="Video/9.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/full.mp4" target="_blank">
+                            <video src="Video/Full.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+                <div class="hidden peer-checked:block project-card rounded-lg overflow-hidden shadow-lg"data-category="video">
+                        <a href="Video/7.mp4" target="_blank">
+                            <video src="Video/7.mp4" class="w-full h-64 object-cover cursor-pointer"autoplay muted loop playsinline></video>
+                        </a>
+                </div>
+
+                <label for="show-more" class="col-span-full flex justify-center mt-4">
+                    <div class="border-2 border-white text-center text-gray-800 px-8 bg-gray-200 py-3 rounded hover:bg-black hover:text-white transition-all cursor-pointer">
+                        Load more
+                    </div>
+                </label>
+            </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden">
+        <div class="bg-white !rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white z-10 flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-800" id="modalTitle">Project Title</h3>
+                <button id="closeModal" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-800">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6" id="modalContent">
+                <!-- Content will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-bold mb-6">Get In Touch</h2>
+                    <p class="text-gray-600 mb-8 max-w-lg">Have a project in mind or interested in collaborating? I'd love to hear from you. Please fill out the form below, and I'll be in touch as soon as possible to discuss how we can bring your ideas to life.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 !rounded-full text-primary mr-4">
+                                <i class="ri-map-pin-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-800">Location</h3>
+                                <p class="text-gray-600">Noida Sec 34 (U.P.)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 !rounded-full text-primary mr-4">
+                                <i class="ri-mail-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-800">Email</h3>
+                                <p class="text-gray-600">aniketgautam049@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 !rounded-full text-primary mr-4">
+                                <i class="ri-phone-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-800">Phone</h3>
+                                <p class="text-gray-600">+91-7078519350</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <iframe
+                        title="JotForm Form"
+                        src="https://form.jotform.com/251846108574159"
+                        frameborder="0"
+                        style="width: 100%; height: 800px; border: none;"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+            
+           <div class="mt-20">
+                <h3 class="text-2xl font-bold text-center mb-8">Find Me Here</h3>
+                <div class="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.0171501713!2d77.23743821104736!3d28.56769097724209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce58dd398fd17%3A0xdea73b6a4c7c8f97!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1688550100205!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="rounded-lg"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="wave-bg pt-20 pb-10 text-white relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between mb-12">
+                <div class="md:w-1/3 mb-10 md:mb-0">
+                    <h2 class="text-3xl font-['Pacifico'] mb-4">Aniket Gautam</h2>
+                    <p class="mb-6 max-w-md">Creating meaningful visual experiences through innovative design solutions. Let's bring your ideas to life.</p>
+                </div>
+                <div class="md:w-1/3 mb-10 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="#experience" class="hover:text-primary transition-colors">Experience</a></li>
+                        <li><a href="#projects" class="hover:text-primary transition-colors">Projects</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+               <div class="md:w-1/3">
+                    <h3 class="text-xl font-bold mb-4">Connect with Me</h3>
+                    <p class="mb-4">Follow me on social media for updates, insights, and more.</p>
+                    <div class="flex space-x-4">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/917078519350" target="_blank" class="text-white bg-green-500 p-3 rounded-full hover:bg-green-600 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.52 3.48A11.93 11.93 0 0012 0C5.38 0 .02 5.35.02 11.95a11.9 11.9 0 001.61 6.06L0 24l6.2-1.63a12.03 12.03 0 005.8 1.5c6.62 0 12-5.35 12-11.95a11.93 11.93 0 00-3.48-8.44zM12 22c-1.59 0-3.14-.34-4.53-.99l-.32-.16-3.68.97.98-3.57-.21-.36a9.93 9.93 0 01-1.51-5.27c0-5.51 4.49-9.98 10-9.98 2.67 0 5.18 1.04 7.07 2.92A9.91 9.91 0 0122 11.95c0 5.51-4.49 10.05-10 10.05z"/>
+                        </svg>
+                        </a>
+
+                        <!-- Behance -->
+                      <a href="https://www.behance.net/aniketgautam14" target="_blank" class="text-white bg-blue-600 p-3 rounded-full hover:bg-blue-700 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.53 9.25h-7.5v1.8h7.14c-.35 2.43-1.84 3.94-4.14 3.94-2.64 0-4.39-1.98-4.39-4.48s1.75-4.48 4.39-4.48c1.63 0 3.1.68 4.1 2l1.6-1.26C22.23 5.04 20.29 4 18.03 4 14.72 4 12 6.8 12 10.21s2.72 6.21 6.03 6.21c2.46 0 4.24-1.34 4.5-4.46v-.5zm-17.86 5.05H4.2v-3.3h.4c.89 0 1.74.2 1.74 1.54 0 1.35-.85 1.76-1.67 1.76zm-.52-7.74h.4c.84 0 1.52.29 1.52 1.38 0 1.04-.73 1.42-1.63 1.42h-.3V6.56zM0 4h7.45c2.11 0 3.48 1.27 3.48 3.13 0 1.42-.89 2.37-2.16 2.62v.06c1.67.16 2.68 1.27 2.68 2.79 0 2.05-1.58 3.4-4.13 3.4H0V4z"/>
+                            </svg>
+                      </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/Aniket Gautam" target="_blank" class="text-white bg-blue-600 p-3 rounded-full hover:bg-blue-700 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8 8h3.5v2.25h.05c.49-.93 1.69-1.9 3.45-1.9 3.69 0 4.5 2.43 4.5 5.59V24h-4V14.5c0-2.25-.04-5.14-3.13-5.14-3.13 0-3.62 2.45-3.62 4.98V24h-4V8z"/>
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white border-opacity-20 flex justify-center items-center text-center">
+                <p>© 2025 Aniket Gautam. All rights reserved.</p>    
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script id="navigationScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Theme switcher
+            const themeSwitch = document.getElementById('themeSwitch');
+            themeSwitch.addEventListener('click', function() {
+                this.classList.toggle('dark');
+                // Here you would implement actual theme switching logic
+            });
+        });
+    </script>
+    
+    <script id="heroAnimationScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('hero3DContainer');
+            
+            // Set up Three.js scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+            
+            // Create objects (simplified version)
+            const geometry1 = new THREE.BoxGeometry(1, 1, 1);
+            const geometry2 = new THREE.SphereGeometry(0.7, 32, 32);
+            const geometry3 = new THREE.TorusGeometry(0.7, 0.2, 16, 100);
+            
+            const material1 = new THREE.MeshStandardMaterial({ color: 0x6366f1 });
+            const material2 = new THREE.MeshStandardMaterial({ color: 0x8b5cf6 });
+            const material3 = new THREE.MeshStandardMaterial({ color: 0xc4b5fd });
+            
+            const cube = new THREE.Mesh(geometry1, material1);
+            const sphere = new THREE.Mesh(geometry2, material2);
+            const torus = new THREE.Mesh(geometry3, material3);
+            
+            cube.position.set(-1.5, 0, 0);
+            sphere.position.set(0, 0, 0);
+            torus.position.set(1.5, 0, 0);
+            
+            scene.add(cube);
+            scene.add(sphere);
+            scene.add(torus);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0xffffff, 1);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+            
+            camera.position.z = 5;
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                
+                sphere.rotation.x += 0.01;
+                sphere.rotation.y += 0.01;
+                
+                torus.rotation.x += 0.01;
+                torus.rotation.y += 0.01;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        });
+    </script>
+    
+    <script id="projectsScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Project filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-800');
+                    });
+                    this.classList.remove('bg-gray-200', 'text-gray-800');
+                    this.classList.add('bg-primary', 'text-white');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Project modal
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const closeModal = document.getElementById('closeModal');
+            const viewButtons = document.querySelectorAll('.view-project-btn');
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-project');
+                    openProjectModal(projectId);
+                });
+            });
+            
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            function openProjectModal(projectId) {
+                // Sample project data - in a real app this would come from a database
+                const projects = {
+                    project1: {
+                        title: 'Optasia Foundation Branding',
+                        content: `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <img src="image/00.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/01.png" alt="Aroma Coffee Packaging" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/02.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/03.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/04.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/05.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/06.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/07.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/08.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/09.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/10.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/11.png" alt="Optasia Foundation" class="w-full h-64 object-cover !rounded-lg">
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+                            <p class="text-gray-600 mb-6">Optasia Foundation approached me to develop a thoughtful brand identity that reflects their mission and values as a purpose-driven NGO. The goal was to create a visual language that communicates trust, impact, and compassion—while remaining approachable and engaging for communities, donors, and volunteers alike.</p>
+                            
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Tools Used</h3>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Illustrator</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Photoshop</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe InDesign</span>
+                            </div>
+                        `
+                    },
+                    project2: {
+                        title: 'Exhime Web-design',
+                        content: `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <img src="image/EX01.png" alt="FitTrack Dashboard" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/EX02.png" alt="FitTrack Workout" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/EX03.png" alt="FitTrack Dashboard" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/EX04.png" alt="FitTrack Dashboard" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/EX05.png" alt="FitTrack Dashboard" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/EX06.png" alt="FitTrack Dashboard" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="image/EX07.png" alt="FitTrack Dashboard" class="w-full h-64 object-cover !rounded-lg">
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+                            <p class="text-gray-600 mb-6">The goal of this project was to enhance the overall user experience and interface design of Xhify Pvt.Ltd. The redesign focused on improving usability, visual consistency, and user engagement across all touchpoints.</p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Key Features</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>Intuitive layout and navigation tailored to user needs and behaviors.</li>
+                                        <li>Seamless experience across all devices—desktop, tablet, and mobile.</li>
+                                        <li>Clear, visually organized dashboards with real-time data and insights.</li>
+                                        <li>WCAG-compliant design with clear contrast, readable text, and keyboard-friendly navigation.</li>
+                                        <li>Consistent visual elements (typography, color palette, icons, components) for scalable design.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Results</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>42% Increase in User Engagement</li>
+                                        <li>30% Higher Retention Rate</li>
+                                        <li>Reduced Support Queries by 24%</li>
+                                        <li>User satisfaction score improved from 3.6/5 to 4.7/5</li>
+                                        <li>Optimized Performance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Tools Used</h3>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Figma</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Photoshop</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Sketch</span>
+                            </div>
+                        `
+                    },
+                    project3: {
+                        title: 'Video Editing',
+                        content: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <video src="video/9.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                            <video src="video/10.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                            <video src="video/3.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                            <video src="video/4.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                            <video src="video/5.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                            <video src="video/6.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                            <video src="video/7.mp4" class="w-full h-64 object-cover !rounded-lg" autoplay muted loop playsinline controls></video>
+                        
+                            
+                            
+                        </div>
+                            <h3 class="text-xl font-bold mb-4">Tools Used</h3>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Spline</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Premiere Pro</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">After Effect</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">VN</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Capcut</span>
+                            </div>
+                        `
+                    },
+                    project4: {
+                        title: 'Elegance Magazine Layout',
+                        content: `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <img src="https://readdy.ai/api/search-image?query=elegant%20fashion%20magazine%20spread%20with%20typography%20and%20high-end%20fashion%20photography%2C%20editorial%20design%2C%20professional%20print%20layout&width=600&height=400&seq=proj4detail1&orientation=landscape" alt="Elegance Magazine Spread 1" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="https://readdy.ai/api/search-image?query=fashion%20magazine%20cover%20design%20with%20minimalist%20typography%20and%20portrait%20photography%2C%20editorial%20design%2C%20professional%20print%20layout&width=600&height=400&seq=proj4detail2&orientation=landscape" alt="Elegance Magazine Cover" class="w-full h-64 object-cover !rounded-lg">
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+                            <p class="text-gray-600 mb-6">Elegance is a high-end fashion and lifestyle magazine that commissioned me to redesign their editorial layout and create a fresh visual identity. The project encompassed the magazine's cover design, feature spreads, regular columns, and typography system.</p>
+                            
+                            <h3 class="text-xl font-bold mb-4">The Challenge</h3>
+                            <p class="text-gray-600 mb-6">The magazine needed to reposition itself in a competitive market, appealing to a younger, design-conscious audience while maintaining its reputation for sophisticated content. The design needed to balance bold, contemporary elements with timeless elegance and ensure excellent readability across both print and digital formats.</p>
+                            
+                            <h3 class="text-xl font-bold mb-4">The Solution</h3>
+                            <p class="text-gray-600 mb-6">I developed a comprehensive editorial design system featuring a refined typography hierarchy, a flexible grid system that allows for dynamic layouts, and a cohesive visual language that carries through the entire publication. The redesign introduced more white space, larger photography, and a careful balance between classic and contemporary design elements.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Design Elements</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>Custom typography system with serif and sans-serif pairings</li>
+                                        <li>Modular grid system with 12 columns for flexible layouts</li>
+                                        <li>Refined color palette with seasonal accent colors</li>
+                                        <li>Custom pull quote and caption styles</li>
+                                        <li>Distinctive section markers and navigation elements</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Results</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>15% increase in newsstand sales</li>
+                                        <li>22% growth in subscription renewals</li>
+                                        <li>Featured in multiple design publications</li>
+                                        <li>Won "Best Editorial Redesign" at the Publishing Design Awards</li>
+                                        <li>Attracted new premium advertisers</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-6 !rounded-lg mb-8">
+                                <h3 class="text-xl font-bold mb-4">Client Testimonial</h3>
+                                <p class="text-gray-600 italic">"The redesign Alex created for Elegance has completely transformed our publication. The new look perfectly balances sophistication with contemporary appeal, and our readers have responded enthusiastically. The thoughtful typography system and flexible layouts have also made our production process more efficient while elevating our visual storytelling."</p>
+                                <p class="text-gray-800 font-medium mt-4">— Victoria Reed, Editor-in-Chief, Elegance Magazine</p>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Tools Used</h3>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe InDesign</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Photoshop</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Illustrator</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Typography</span>
+                            </div>
+                        `
+                    },
+                    project5: {
+                        title: 'NexTech Startup Branding',
+                        content: `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <img src="https://readdy.ai/api/search-image?query=tech%20startup%20branding%20with%20logo%20and%20brand%20materials%20displayed%20on%20desk%2C%20business%20cards%2C%20letterhead%2C%20digital%20assets%2C%20clean%20modern%20design&width=600&height=400&seq=proj5detail1&orientation=landscape" alt="NexTech Branding Materials" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="https://readdy.ai/api/search-image?query=tech%20company%20website%20design%20showing%20homepage%20on%20laptop%20and%20mobile%2C%20responsive%20design%2C%20clean%20modern%20interface&width=600&height=400&seq=proj5detail2&orientation=landscape" alt="NexTech Digital Presence" class="w-full h-64 object-cover !rounded-lg">
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+                            <p class="text-gray-600 mb-6">NexTech, a promising AI-driven data analytics startup, approached me to develop a complete brand identity system as they prepared for their Series A funding round. The goal was to create a professional, forward-thinking visual identity that would appeal to both enterprise clients and potential investors.</p>
+                            
+                            <h3 class="text-xl font-bold mb-4">The Challenge</h3>
+                            <p class="text-gray-600 mb-6">As a new player in a competitive tech space, NexTech needed to stand out while still appearing credible and established. The brand identity needed to communicate innovation and cutting-edge technology without relying on clichéd tech visuals. Additionally, the system needed to be flexible enough to grow with the company through various applications and future product lines.</p>
+                            
+                            <h3 class="text-xl font-bold mb-4">The Solution</h3>
+                            <p class="text-gray-600 mb-6">I created a comprehensive brand identity centered around a distinctive logomark that symbolizes data transformation and insight. The visual system includes a vibrant yet professional color palette, a custom icon set for product features, and a flexible graphic system based on data visualization patterns. The typography combines a geometric sans-serif for headlines with a highly readable serif for body text, creating a balance between innovation and trustworthiness.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Brand Elements</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>Logo system with responsive variations</li>
+                                        <li>Custom data-inspired pattern system</li>
+                                        <li>Comprehensive typography guidelines</li>
+                                        <li>Digital-first stationery and marketing materials</li>
+                                        <li>UI component library for product interfaces</li>
+                                        <li>Presentation and pitch deck templates</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Results</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>Successfully secured $12M in Series A funding</li>
+                                        <li>Increased inbound enterprise leads by 45%</li>
+                                        <li>Featured in TechCrunch and other industry publications</li>
+                                        <li>Improved team morale and company culture</li>
+                                        <li>Seamless application across digital and physical touchpoints</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-6 !rounded-lg mb-8">
+                                <h3 class="text-xl font-bold mb-4">Client Testimonial</h3>
+                                <p class="text-gray-600 italic">"Working with Alex on our brand identity was one of the best decisions we made as a startup. The process was collaborative and insightful, and the results exceeded our expectations. Our new brand identity has been instrumental in establishing credibility with enterprise clients and investors. We've received countless compliments on our professional appearance, which has opened doors that might otherwise have remained closed to a young company."</p>
+                                <p class="text-gray-800 font-medium mt-4">— Michael Reeves, CEO, NexTech</p>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Tools Used</h3>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Illustrator</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe Photoshop</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Figma</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Sketch</span>
+                            </div>
+                        `
+                    },
+                    project6: {
+                        title: 'LuxeMarket E-commerce Website',
+                        content: `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <img src="https://readdy.ai/api/search-image?query=luxury%20e-commerce%20website%20design%20showing%20product%20page%20on%20desktop%2C%20high-end%20online%20shopping%20interface%2C%20clean%20modern%20design&width=600&height=400&seq=proj6detail1&orientation=landscape" alt="LuxeMarket Desktop" class="w-full h-64 object-cover !rounded-lg">
+                                <img src="https://readdy.ai/api/search-image?query=luxury%20e-commerce%20website%20design%20showing%20mobile%20responsive%20version%2C%20product%20listing%20page%2C%20high-end%20online%20shopping%20interface&width=600&height=400&seq=proj6detail2&orientation=landscape" alt="LuxeMarket Mobile" class="w-full h-64 object-cover !rounded-lg">
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+                            <p class="text-gray-600 mb-6">LuxeMarket, a multi-brand luxury retailer, commissioned me to redesign their e-commerce website to better reflect their premium positioning and improve the online shopping experience. The project encompassed UX research, interface design, and the creation of a comprehensive design system for ongoing development.</p>
+                            
+                            <h3 class="text-xl font-bold mb-4">The Challenge</h3>
+                            <p class="text-gray-600 mb-6">The existing website suffered from an outdated design, poor mobile experience, and conversion rates below industry standards. Customer feedback indicated that the shopping process felt cumbersome and didn't reflect the premium nature of the products. Additionally, the client needed a solution that would scale as their product catalog expanded and support seasonal campaign requirements.</p>
+                            
+                            <h3 class="text-xl font-bold mb-4">The Solution</h3>
+                            <p class="text-gray-600 mb-6">After conducting user research and competitive analysis, I developed a completely new user experience focused on elegant product presentation, intuitive navigation, and a streamlined checkout process. The design emphasizes large product imagery, thoughtful white space, and subtle animations that enhance the luxury feel without compromising performance.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Key Features</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>Immersive product galleries with zoom and 360° views</li>
+                                        <li>Intelligent search with visual filtering options</li>
+                                        <li>Personalized recommendations engine</li>
+                                        <li>Streamlined 3-step checkout process</li>
+                                        <li>Integrated style guides and outfit builders</li>
+                                        <li>Responsive design optimized for all devices</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-3">Results</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li>38% increase in conversion rate</li>
+                                        <li>27% increase in average order value</li>
+                                        <li>45% reduction in cart abandonment</li>
+                                        <li>52% increase in mobile transactions</li>
+                                        <li>Customer satisfaction score improved from 3.8/5 to 4.7/5</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-6 !rounded-lg mb-8">
+                                <h3 class="text-xl font-bold mb-4">Design System</h3>
+                                <p class="text-gray-600 mb-4">A key deliverable was a comprehensive design system that includes:</p>
+                                <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                    <li>Component library with all UI elements</li>
+                                    <li>Responsive grid system and breakpoint specifications</li>
+                                    <li>Animation and interaction patterns</li>
+                                    <li>Content guidelines for product descriptions and imagery</li>
+                                    <li>Documentation for developers and content creators</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-6 !rounded-lg mb-8">
+                                <h3 class="text-xl font-bold mb-4">Client Testimonial</h3>
+                                <p class="text-gray-600 italic">"The redesigned website has transformed our business. Alex not only created a beautiful interface that perfectly represents our brand, but also deeply understood the e-commerce challenges we faced. The thoughtful UX improvements have significantly increased our conversion rates and customer satisfaction. The design system has also made it much easier for our team to maintain consistency as we grow."</p>
+                                <p class="text-gray-800 font-medium mt-4">— Elena Petrov, Digital Director, LuxeMarket</p>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-4">Tools Used</h3>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Figma</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Adobe XD</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Principle</span>
+                                <span class="bg-gray-100 px-4 py-2 !rounded-full text-gray-700">Hotjar</span>
+                            </div>
+                        `
+                    }
+                };
+                
+                if (projects[projectId]) {
+                    modalTitle.textContent = projects[projectId].title;
+                    modalContent.innerHTML = projects[projectId].content;
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+    
+    <script id="contactFormScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const privacyCheckbox = document.getElementById('privacy');
+            const checkmark = document.getElementById('checkmark');
+            
+            // Custom checkbox
+            privacyCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    checkmark.classList.remove('scale-0');
+                    checkmark.classList.add('scale-100');
+                } else {
+                    checkmark.classList.remove('scale-100');
+                    checkmark.classList.add('scale-0');
+                }
+            });
+            
+            // Form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                const privacy = privacyCheckbox.checked;
+                
+                // Simple validation
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                if (!privacy) {
+                    alert('Please agree to the privacy policy');
+                    return;
+                }
+                
+                // Show sending state
+                submitBtn.innerHTML = '<span>Sending...</span>';
+                submitBtn.disabled = true;
+                
+                // Simulate sending (would be replaced with actual API call)
+                setTimeout(function() {
+                    submitBtn.innerHTML = '<span>Message Sent!</span> <i class="ri-check-line ml-2"></i>';
+                    submitBtn.classList.remove('bg-primary');
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    checkmark.classList.remove('scale-100');
+                    checkmark.classList.add('scale-0');
+                    
+                    // Reset button after delay
+                    setTimeout(function() {
+                        submitBtn.innerHTML = '<span>Send Message</span> <i class="ri-send-plane-line ml-2"></i>';
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.add('bg-primary');
+                    }, 3000);
+                }, 1500);
+            });
+            
+            // 3D effect for contact form
+            const form = document.querySelector('.contact-form');
+            
+            if (form) {
+                form.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const xPercent = (x / rect.width - 0.5) * 2;
+                    const yPercent = (y / rect.height - 0.5) * 2;
+                    
+                    this.style.transform = `rotateX(${yPercent * -2}deg) rotateY(${xPercent * 2}deg)`;
+                });
+                
+                form.addEventListener('mouseleave', function() {
+                    this.style.transform = 'rotateX(0) rotateY(0)';
+                });
+            }
+        });
+    </script>
+    
+    <script id="cursorEffectScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.querySelector('.custom-cursor');
+            
+            if (cursor) {
+                document.addEventListener('mousemove', function(e) {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+                
+                // Scale effect on interactive elements
+                const interactiveElements = document.querySelectorAll('a, button, .project-card, .social-icon, .filter-btn');
+                
+                interactiveElements.forEach(element => {
+                    element.addEventListener('mouseenter', function() {
+                        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                        cursor.style.mixBlendMode = 'difference';
+                    });
+                    
+                    element.addEventListener('mouseleave', function() {
+                        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                        cursor.style.mixBlendMode = 'difference';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
